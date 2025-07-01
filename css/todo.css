@@ -1,0 +1,200 @@
+/* Modo claro por defecto */
+:root {
+  --fondo: #f7f7f7;
+  --texto: #111;
+  --caja: #ffffff;
+  --borde: #6a1b9a;
+  --boton: #6a1b9a;
+  --hover: #4a0d70;
+  --tarea: #eee;
+  --completada: #c8e6c9;
+  --filtro-activo: #dcdcdc;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: var(--fondo);
+  color: var(--texto);
+  padding: 40px;
+  margin: 0;
+  transition: all 0.3s ease;
+}
+
+.container {
+  max-width: 700px;
+  margin: auto;
+  background: var(--caja);
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Modo oscuro */
+body.dark {
+  --fondo: #121212;
+  --texto: #f5f5f5;
+  --caja: #1e1e1e;
+  --borde: #bb86fc;
+  --boton: #bb86fc;
+  --hover: #9a63d1;
+  --tarea: #2c2c2c;
+  --completada: #355c3b;
+  --filtro-activo: #333;
+}
+
+h1 {
+  text-align: center;
+  color: var(--borde);
+  margin-bottom: 30px;
+}
+
+form {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+form input[type="text"] {
+  flex: 1 1 100%;
+  padding: 10px;
+  border: 2px solid var(--borde);
+  border-radius: 5px;
+  background: transparent;
+  color: var(--texto);
+}
+
+form button {
+  background: var(--boton);
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  transition: background 0.3s ease;
+  cursor: pointer;
+}
+
+form button:hover {
+  background: var(--hover);
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  background: var(--tarea);
+  margin-bottom: 10px;
+  padding: 12px 16px;
+  border-radius: 6px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: transform 0.3s, background-color 0.3s;
+}
+
+li:hover {
+  transform: scale(1.02);
+}
+
+li.completada {
+  background: var(--completada);
+  text-decoration: line-through;
+}
+
+li button {
+  margin-left: 10px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  transition: transform 0.2s;
+  color: inherit;
+}
+
+li button:hover {
+  transform: scale(1.3);
+}
+
+li button.completar {
+  color: green;
+}
+
+li button.eliminar {
+  color: red;
+}
+
+li.clicked {
+  animation: brillar 0.5s ease;
+}
+
+@keyframes brillar {
+  0% {
+    box-shadow: 0 0 10px 2px gold;
+  }
+  100% {
+    box-shadow: none;
+  }
+}
+
+/* Filtros */
+.filtros {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+  gap: 10px;
+}
+
+.filtro {
+  background-color: var(--filtro-activo);
+  border: none;
+  padding: 8px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  color: var(--texto);
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.filtro:hover {
+  background-color: var(--boton);
+  color: white;
+}
+
+/* Botón modo oscuro */
+.modo-toggle {
+  text-align: right;
+  margin-bottom: 10px;
+}
+
+#modoBtn {
+  background: var(--boton);
+  color: white;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.3s ease;
+}
+
+#modoBtn:hover {
+  background: var(--hover);
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  form {
+    flex-direction: column;
+  }
+
+  form button {
+    width: 100%;
+  }
+
+  .filtros {
+    flex-direction: column;
+    gap: 8px;
+  }
+}
