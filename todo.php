@@ -23,6 +23,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['accion'])) {
     } elseif ($accion === 'eliminar') {
         echo $tarea->eliminar($_GET['id']) ? 'ok' : 'error';
         exit;
+    } elseif ($accion === 'eliminadas') {
+        echo json_encode($tarea->obtenerEliminadas());
+        exit;
     }
 }
 
@@ -33,29 +36,45 @@ $tareas = $tarea->obtenerTodas();
 <head>
   <meta charset="UTF-8">
   <title>To-Do List</title>
+  <link rel="icon" type="image/png" href="img/list.png">
   <link rel="stylesheet" href="css/todo.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
 </head>
 <body>
   <div class="container">
+
+    <!-- Logo -->
+    <div style="text-align: center; margin-bottom: 10px;">
+      <img src="img/list.png" alt="Logo Lista" width="80">
+    </div>
+
+    <!-- Modo oscuro/claro -->
     <div class="modo-toggle">
-      <button id="modoBtn">Cambiar modo</button>
+      <button id="modoBtn">Modo Oscuro</button>
     </div>
 
     <h1>Lista de Tareas</h1>
 
+    <!-- Formulario -->
     <form id="formulario">
       <input type="text" id="tarea" placeholder="Escribe una nueva tarea...">
-      <button type="submit">Agregar</button>
+      <button type="submit">
+        <img src="img/plus.png" alt="Agregar" width="20" style="vertical-align: middle; margin-right: 5px;">
+        Agregar
+      </button>
     </form>
 
+    <!-- Filtros -->
     <div class="filtros">
       <button class="filtro" data-filtro="todas">Todas</button>
       <button class="filtro" data-filtro="completadas">Completadas</button>
       <button class="filtro" data-filtro="pendientes">Pendientes</button>
+      <button class="filtro" data-filtro="eliminadas">Eliminadas</button>
     </div>
 
+   
     <ul id="lista"></ul>
+
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
